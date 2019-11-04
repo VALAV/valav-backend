@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+
 dotenv.config();
 
 /* Configuraciones de TypeORM para establecer la conexion con la DB
@@ -12,6 +13,8 @@ const ormConfig = {
   username: 'postgres',
   password: process.env.DB_PASSWORD,
   database: 'valav',
+  entities: ['dist/entities/*.js'],
+  synchronize: false
 };
 
 export let config = JSON.parse(JSON.stringify(ormConfig));
