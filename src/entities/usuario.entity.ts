@@ -1,11 +1,14 @@
-import { Column, Entity, getCustomRepository, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import{ IsString } from 'class-validator';
 import {Rol} from './rol.entity';
+
 
 @Entity({name: 'usuario'})
 export class Usuario {
   @PrimaryGeneratedColumn({name: 'id'})
   id: number;
 
+  @IsString()
   @Column({name: 'nombre_usuario'})
   nombreUsuario: string;
 
