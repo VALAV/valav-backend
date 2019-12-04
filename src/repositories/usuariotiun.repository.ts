@@ -8,7 +8,7 @@ export class UsuarioTIUNRepository extends Repository<UsuarioTIUN> {
   async crearUsuarioTIUN( usuarioTIUN: UsuarioTIUNDto ): Promise<string> {
     const usuarioRepository = getCustomRepository(UsuarioRepository);
     const usuario = await usuarioRepository.crearUsuario({
-      nombreUsuario: usuarioTIUN.nombreUsuario,
+      email: usuarioTIUN.email,
       password: usuarioTIUN.password,
       rolId: usuarioTIUN.rolId
     });

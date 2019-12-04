@@ -9,8 +9,8 @@ export class Usuario {
   id: number;
 
   @IsString()
-  @Column({name: 'nombre_usuario'})
-  nombreUsuario: string;
+  @Column({name: 'email'})
+  email: string;
 
   @Column({name: 'habilitado'})
   habilitado: boolean;
@@ -21,4 +21,11 @@ export class Usuario {
   @OneToOne(type => Rol)
   @JoinColumn({name: 'rol_id'})
   rol: number;
+
+  constructor(email: string, password: string, rolId: number ) {
+    this.email = email;
+    this.password = password;
+    this.rol = rolId;
+    this.habilitado = true;
+  }
 }

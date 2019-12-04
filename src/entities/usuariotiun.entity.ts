@@ -3,8 +3,9 @@ import { Usuario } from './usuario.entity';
 
 @Entity({name: 'usuario_tiun'})
 export class UsuarioTIUN {
-  @PrimaryGeneratedColumn({name: 'u_tiun_id'})
-  id: number;
+  @OneToOne(type => Usuario)
+  @JoinColumn({name: 'usuario_id'})
+  usuario: number;
 
   @Column({name: 'nombres'})
   nombres: string;
@@ -12,10 +13,13 @@ export class UsuarioTIUN {
   @Column({name: 'apellidos'})
   apellidos: string;
 
+  @ManyToOne(type => )
+
   @Column({name: 'documento'})
   documento: string;
 
-  @OneToOne(type => Usuario)
-  @JoinColumn({name: 'usuario_id'})
-  usuario: number;
+  @Column({name: 'tiun'})
+  tiun: string;
+
+
 }
