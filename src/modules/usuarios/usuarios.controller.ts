@@ -1,16 +1,16 @@
 import {Controller, Get, Post, Param, Body} from '@nestjs/common';
-import {CreateUsuarioDto} from './dto/create-usuario.dto';
 import {UsuarioService} from './usuario.service';
 import { UsuarioTIUNDto } from './dto/usuarioTIUN.dto';
+import {UsuarioTIUN} from "./entities/usuariotiun.entity";
 
 @Controller('usuarios')
 export class UsuariosController {
 
     constructor(private readonly usuarioService: UsuarioService){}
 
-    @Get()
-    findAll(): string {
-        return this.usuarioService.findAll();
+    @Get('usuarios-tiun')
+    findAll(): Promise<UsuarioTIUN[]> {
+        return this.usuarioService.findAllUsuarioTIUN();
     }
 
     @Get(':id')

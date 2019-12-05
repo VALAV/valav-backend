@@ -5,9 +5,11 @@ import {UsuarioRepository} from './usuario.repository';
 
 @EntityRepository(UsuarioTIUN)
 export class UsuarioTIUNRepository extends Repository<UsuarioTIUN> {
-  async crearUsuarioTIUN( usuarioTIUN: UsuarioTIUNDto ): Promise<string> {
-    const usuarioRepository = getCustomRepository(UsuarioRepository);
-    const usuario = await usuarioRepository.crearUsuario({
+
+  private usuarioRepository = getCustomRepository(UsuarioRepository);
+
+  async crearUsuarioTIUN( usuarioTIUN: UsuarioTIUNDto ): Promise<UsuarioTIUN> {
+    const usuario = await this.usuarioRepository.crearUsuario({
       email: usuarioTIUN.email,
       password: usuarioTIUN.password,
       rolId: usuarioTIUN.rolId
@@ -16,7 +18,13 @@ export class UsuarioTIUNRepository extends Repository<UsuarioTIUN> {
       usuarioTIUN.apellidos, usuarioTIUN.tipoDocumento, usuarioTIUN.documento,
       usuarioTIUN.tiun, usuario.id);
     console.log('UsuarioTIUN despues: ', nuevoUsuarioTIUN);
-    await this.save(nuevoUsuarioTIUN);
-    return 'Ok';
+    const nuevoUsuario = await this.save(nuevoUsuarioTIUN);
+    return nuevoUsuario;
   }
+
+  async findAll(): any {
+    const usuarios = await this.find();
+    console.log(usuarios);
+  }
+
 }
