@@ -1,7 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import{ IsString } from 'class-validator';
-import {Rol} from './rol.entity';
-
+import { IsString } from 'class-validator';
+import {Rol} from '../../rol/entities/rol.entity';
 
 @Entity({name: 'usuario'})
 export class Usuario {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { UsuarioTIUNDto } from '../../modules/usuarios/dto/usuarioTIUN.dto';
-import { UsuarioTIUNRepository } from '../../repositories/usuariotiun.repository';
+import { UsuarioTIUNDto } from './dto/usuarioTIUN.dto';
+import { UsuarioTIUNRepository } from './repositories/usuariotiun.repository';
 import { getCustomRepository } from 'typeorm';
 
 @Injectable()

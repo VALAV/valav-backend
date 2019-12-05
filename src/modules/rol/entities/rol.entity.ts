@@ -1,8 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import {Usuario} from './usuario.entity';
-
-const ROL_1 = 'Usuario TIUN';
-const ROL_2 = 'Prestador servicios';
+import {Usuario} from '../../usuarios/entities/usuario.entity';
 
 @Entity({name: 'rol'})
 export class Rol {

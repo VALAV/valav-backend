@@ -13,7 +13,7 @@ const ormConfig = {
   username: 'postgres',
   password: process.env.DB_PASSWORD,
   database: 'valav',
-  entities: ['dist/entities/*.js'],
+  entities: ['dist/modules/**/entities/*.js'],
   synchronize: false
 };
 
