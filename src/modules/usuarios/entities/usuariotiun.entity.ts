@@ -1,10 +1,10 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn} from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn, ManyToOne} from 'typeorm';
 import { Usuario } from './usuario.entity';
 import { TipoDocumento } from '../../tipo-documento/entities/tipoDocumento.entity';
 
 @Entity({name: 'usuario_tiun'})
 export class UsuarioTIUN {
-  @OneToOne(type => Usuario)
+  @OneToOne(type => Usuario, {eager: true})
   @JoinColumn({name: 'usuario_id'})
   usuario: number;
 
@@ -14,7 +14,7 @@ export class UsuarioTIUN {
   @Column({name: 'apellidos'})
   apellidos: string;
 
-  @OneToOne(type => TipoDocumento)
+  @ManyToOne(type => TipoDocumento, tipoDoc => tipoDoc.usuariosTIUN, {eager: true})
   @JoinColumn({name: 'tipo_doc_id'})
   tipoDocumento: number;
 

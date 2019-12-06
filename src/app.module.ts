@@ -5,12 +5,11 @@ import {config} from './assets/js/db.config';
 import { UsuarioService } from './modules/usuarios/usuario.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { RolModule } from './modules/rol/rol.module';
-import { PrestadorModule } from './modules/prestador/prestador.module';
 import { TipoDocumentoModule } from './modules/tipo-documento/tipo-documento.module';
 
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), UsuariosModule, AuthModule, RolModule, PrestadorModule, TipoDocumentoModule],
+  imports: [TypeOrmModule.forRoot(config), UsuariosModule, AuthModule, RolModule, TipoDocumentoModule],
   controllers: [],
   providers: [UsuarioService],
 })

@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS public.usuario (
     id              SERIAL PRIMARY KEY,
     email           VARCHAR(50) NOT NULL,
     habilitado      BOOLEAN NOT NULL,
-    password        VARCHAR(50) NOT NULL,
+    password        VARCHAR(60) NOT NULL,
     rol_id          INTEGER REFERENCES rol(id)
 );
 

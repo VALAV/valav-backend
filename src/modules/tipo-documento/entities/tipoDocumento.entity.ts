@@ -11,5 +11,5 @@ export class TipoDocumento {
 
   @OneToMany(type => UsuarioTIUN,
     usuarioTIUN => usuarioTIUN.tipoDocumento)
-  usuarios: UsuarioTIUN[];
+  usuariosTIUN: UsuarioTIUN[];
 }
