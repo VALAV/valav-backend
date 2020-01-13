@@ -13,4 +13,8 @@ export class UsuarioRepository extends Repository<Usuario> {
     return await this.find();
   }
 
+  async findByEmail(emailUsuario: string): Promise<Usuario[]>{
+    return await this.find({email: emailUsuario});
+  }
+
 }

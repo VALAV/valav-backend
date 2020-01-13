@@ -3,10 +3,10 @@ import { UsuarioTIUNDto } from './dto/usuarioTIUN.dto';
 import { UsuarioTIUNRepository } from './repositories/usuariotiun.repository';
 import { getCustomRepository } from 'typeorm';
 import { UsuarioTIUN } from "./entities/usuariotiun.entity";
-import {Usuario} from "./entities/usuario.entity";
-import {UsuarioRepository} from "./repositories/usuario.repository";
-import {Prestador} from "./entities/prestador.entity";
-import {PrestadorRepository} from "./repositories/prestador.repository";
+import { Usuario } from "./entities/usuario.entity";
+import { UsuarioRepository } from "./repositories/usuario.repository";
+import { Prestador } from "./entities/prestador.entity";
+import { PrestadorRepository } from "./repositories/prestador.repository";
 
 @Injectable()
 export class UsuarioService {
@@ -30,7 +30,10 @@ export class UsuarioService {
     return usuarioTIUNRepository.crearUsuarioTIUN(usuarioTIUN);
   }
 
-  async findUsuarioByEmail(email)
+  async findUsuarioByEmail(email): Promise<Usuario[]>{
+    const usuarioRepository = getCustomRepository(UsuarioRepository);
+    return await usuarioRepository.findByEmail(email);
+  }
 
   findById(id: number): string {
     return `Retorno el usuario con id ${id} desde servicio`;

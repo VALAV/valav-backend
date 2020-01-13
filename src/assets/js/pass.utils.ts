@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcryptjs';
 
+// Funcion que crea el hash de la contrasenna
 export async function hashPassword( password ): Promise<string> {
-
     let hashedPassword: Promise<string> = new Promise(resolve => {
         if(password !== null) {
             bcrypt.genSalt(10, (err, salt) => {
@@ -14,4 +14,14 @@ export async function hashPassword( password ): Promise<string> {
         }
     });
     return hashedPassword;
+}
+// Comprueba si el hash coincide con la contrasenna
+export async function comparePassword( password, hash): Promise<boolean> {
+    let isPasswordCorrect: Promise<boolean> = new Promise( resolve => {
+        bcrypt.compare(password, hash).then(res => {
+            console.log('res de compare:', res);
+            resolve(res);
+        });
+    });
+    return isPasswordCorrect;
 }
