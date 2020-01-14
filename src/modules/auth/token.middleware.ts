@@ -14,9 +14,14 @@ export class TokenMiddleware implements NestMiddleware {
         } else {
             const decoded = await this.authService.verifyJWT(queryParams[ACCESS_TOKEN]);
             console.log(decoded);
+            if(decoded instanceof Error) {
+                if(decoded.name === 'TokenExpiredError')
+                    return res.status(403).json({message: 'Token Expired'});
+                else if (decoded.name === 'JsonWebTokenError')
+                    return res.status(403).json({message: 'Bad Credentials'});
+            }
         }
         console.log('\n-------------------------------\n');
-        //console.log(res);
         next();
     }
 }

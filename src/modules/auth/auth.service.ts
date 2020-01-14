@@ -25,7 +25,8 @@ export class AuthService {
           const usuario = usuarios.pop();
           const isPasswordCorrect = await comparePassword(loginData.password, usuario.password);
           if (isPasswordCorrect) {
-              return this.createJWT({email: loginData.email, rol: usuario.rol});
+              console.log(usuario);
+              return this.createJWT({email: loginData.email, rol: usuario.rol.id});
           } else {
               console.log('Contraseña no cuadra');
           }
@@ -38,6 +39,10 @@ export class AuthService {
     }
 
     async verifyJWT(token: string): Promise<object> {
-      return await this.jwtService.verifyAsync(token);
+        return new Promise(resolve => {
+           this.jwtService.verifyAsync(token)
+               .then(decoded => resolve(decoded))
+               .catch(err => resolve(err))
+        });
     }
 }

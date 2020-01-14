@@ -4,18 +4,22 @@ import {UsuarioTIUNDto} from '../dto/usuarioTIUN.dto';
 import {UsuarioRepository} from './usuario.repository';
 import {hashPassword} from "../../../assets/js/pass.utils";
 import {Usuario} from "../entities/usuario.entity";
+import {Rol} from "../../rol/entities/rol.entity";
 
 @EntityRepository(UsuarioTIUN)
 export class UsuarioTIUNRepository extends Repository<UsuarioTIUN> {
 
   private usuarioRepository = getCustomRepository(UsuarioRepository);
 
-  async crearUsuarioTIUN( usuarioTIUN: UsuarioTIUNDto ): Promise<UsuarioTIUN> {
+  async crearUsuarioTIUN( usuarioTIUN: UsuarioTIUNDto, rol: Rol ): Promise<UsuarioTIUN> {
     let password = '';
     await hashPassword(usuarioTIUN.password).then(value => password = value);
-    const usuario = await this.usuarioRepository.crearUsuario(new Usuario(usuarioTIUN.email,
-                                                              password,
-                                                              usuarioTIUN.rolId));
+    const usuario = await this.usuarioRepository.crearUsuario(
+        new Usuario(usuarioTIUN.email,
+                    password,
+                    rol
+        ));
+    console.log(usuario);
     const nuevoUsuarioTIUN = new UsuarioTIUN(usuarioTIUN.nombres,
       usuarioTIUN.apellidos, usuarioTIUN.tipoDocumento, usuarioTIUN.documento,
       usuarioTIUN.tiun, usuario.id);

@@ -1,16 +1,17 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { UsuariosModule } from './modules/usuarios/usuarios.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { config } from './assets/js/db.config';
-import { UsuarioService } from './modules/usuarios/usuario.service';
-import { AuthModule } from './modules/auth/auth.module';
-import { RolModule } from './modules/rol/rol.module';
-import { TipoDocumentoModule } from './modules/tipo-documento/tipo-documento.module';
-import { AuthService } from './modules/auth/auth.service';
-import { JwtModule } from '@nestjs/jwt';
+import {MiddlewareConsumer, Module, NestModule, RequestMethod} from '@nestjs/common';
+import {UsuariosModule} from './modules/usuarios/usuarios.module';
+import {TypeOrmModule} from '@nestjs/typeorm';
+import {config} from './assets/js/db.config';
+import {UsuarioService} from './modules/usuarios/usuario.service';
+import {AuthModule} from './modules/auth/auth.module';
+import {RolModule} from './modules/rol/rol.module';
+import {TipoDocumentoModule} from './modules/tipo-documento/tipo-documento.module';
+import {AuthService} from './modules/auth/auth.service';
+import {JwtModule} from '@nestjs/jwt';
 import * as dotenv from 'dotenv';
-import { TokenMiddleware } from './modules/auth/token.middleware';
-import { UsuariosController } from './modules/usuarios/usuarios.controller';
+import {TokenMiddleware} from './modules/auth/token.middleware';
+import {UsuariosController} from './modules/usuarios/usuarios.controller';
+import {RolService} from "./modules/rol/rol.service";
 
 dotenv.config();
 
@@ -27,11 +28,15 @@ const EXP_TIME = process.env.EXP_TIME;
             RolModule,
             TipoDocumentoModule],
   controllers: [],
-  providers: [UsuarioService, AuthService],
+  providers: [UsuarioService, AuthService, RolService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
-    consumer.apply(TokenMiddleware)
-      .forRoutes(UsuariosController);
+    consumer
+        .apply(TokenMiddleware)
+        .exclude(
+            {path: 'usuarios/tiun', method: RequestMethod.POST}
+        )
+        .forRoutes(UsuariosController);
   }
 }

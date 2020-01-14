@@ -1,4 +1,8 @@
 import { Module } from '@nestjs/common';
+import {RolService} from "./rol.service";
 
-@Module({})
+@Module({
+    providers: [RolService],
+    exports: [RolService]
+})
 export class RolModule {}
