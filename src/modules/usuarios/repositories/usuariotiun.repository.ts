@@ -14,12 +14,11 @@ export class UsuarioTIUNRepository extends Repository<UsuarioTIUN> {
     let password = '';
     await hashPassword(usuarioTIUN.password).then(value => password = value);
     const usuario = await this.usuarioRepository.crearUsuario(new Usuario(usuarioTIUN.email,
-                                                              usuarioTIUN.password,
+                                                              password,
                                                               usuarioTIUN.rolId));
     const nuevoUsuarioTIUN = new UsuarioTIUN(usuarioTIUN.nombres,
       usuarioTIUN.apellidos, usuarioTIUN.tipoDocumento, usuarioTIUN.documento,
       usuarioTIUN.tiun, usuario.id);
-    console.log('UsuarioTIUN despues: ', nuevoUsuarioTIUN);
     const nuevoUsuario = await this.save(nuevoUsuarioTIUN);
     return nuevoUsuario;
   }
