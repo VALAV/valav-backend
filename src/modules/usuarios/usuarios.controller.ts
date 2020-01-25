@@ -3,6 +3,7 @@ import {UsuarioService} from './usuario.service';
 import { UsuarioTIUNDto } from './dto/usuarioTIUN.dto';
 import {UsuarioTIUN} from "./entities/usuariotiun.entity";
 import {Usuario} from "./entities/usuario.entity";
+import { PrestadorDto } from './dto/prestador.dto';
 
 
 @Controller('usuarios')
@@ -32,5 +33,10 @@ export class UsuariosController {
     @Post('tiun')
     createUsuarioTIUN(@Body() usuarioTIUN: UsuarioTIUNDto) {
         return this.usuarioService.createUsuarioTIUN(usuarioTIUN);
+    }
+
+    @Post('prestador')
+    createPrestador(@Body() prestador: PrestadorDto) {
+        return this.usuarioService.createPrestador(prestador);
     }
 }

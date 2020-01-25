@@ -8,6 +8,7 @@ import { UsuarioRepository } from "./repositories/usuario.repository";
 import { Prestador } from "./entities/prestador.entity";
 import { PrestadorRepository } from "./repositories/prestador.repository";
 import { RolService } from "../rol/rol.service";
+import { PrestadorDto } from './dto/prestador.dto';
 
 @Injectable()
 export class UsuarioService {
@@ -31,6 +32,11 @@ export class UsuarioService {
   async createUsuarioTIUN(usuarioTIUN: UsuarioTIUNDto): Promise<UsuarioTIUN> {
     const usuarioTIUNRepository = getCustomRepository(UsuarioTIUNRepository);
     return usuarioTIUNRepository.crearUsuarioTIUN(usuarioTIUN, this.syncGetRolById(usuarioTIUN.rolId));
+  }
+
+  async createPrestador(prestador: PrestadorDto): Promise<Prestador> {
+    const prestadorRepository = getCustomRepository(PrestadorRepository);
+    return prestadorRepository.crearPrestador(prestador, this.syncGetRolById(prestador.rolId));
   }
 
   async findUsuarioByEmail(email): Promise<Usuario[]>{

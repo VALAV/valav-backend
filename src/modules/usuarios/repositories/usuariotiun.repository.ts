@@ -19,7 +19,6 @@ export class UsuarioTIUNRepository extends Repository<UsuarioTIUN> {
                     password,
                     rol
         ));
-    console.log(usuario);
     const nuevoUsuarioTIUN = new UsuarioTIUN(usuarioTIUN.nombres,
       usuarioTIUN.apellidos, usuarioTIUN.tipoDocumento, usuarioTIUN.documento,
       usuarioTIUN.tiun, usuario.id);
@@ -29,7 +28,6 @@ export class UsuarioTIUNRepository extends Repository<UsuarioTIUN> {
 
   async findAll(): Promise<UsuarioTIUN[]> {
     const usuarios = await this.find();
-    console.log(usuarios);
     return usuarios;
   }
 

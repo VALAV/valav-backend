@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS public.prestador (
     pres_id      INTEGER REFERENCES usuario(id) UNIQUE NOT NULL,
     razon_social    VARCHAR(50) NOT NULL,
     nit             VARCHAR(50) NOT NULL,
+    rut             VARCHAR(50) NOT NULL,
     intentos_cambio INTEGER NOT NULL,
     pts_entregados  INTEGER NOT NULL,
     pts_redimidos   INTEGER NOT NULL,

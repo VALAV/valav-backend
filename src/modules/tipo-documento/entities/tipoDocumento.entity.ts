@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { UsuarioTIUN } from '../../usuarios/entities/usuariotiun.entity';
+import { Prestador } from '../../usuarios/entities/prestador.entity';
 
 @Entity({name: 'tipo_documento'})
 export class TipoDocumento {

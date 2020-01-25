@@ -1,7 +1,8 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { IsString } from 'class-validator';
 import {Rol} from '../../rol/entities/rol.entity';
-import {RolService} from "../../rol/rol.service";
+import { Prestador } from './prestador.entity';
+import { UsuarioTIUN } from './usuariotiun.entity';
 
 @Entity({name: 'usuario'})
 export class Usuario {
@@ -21,6 +22,12 @@ export class Usuario {
   @ManyToOne(type => Rol, {eager: true})
   @JoinColumn({name: 'rol_id'})
   rol: Rol;
+
+  @OneToOne(type => Prestador, prestador => prestador.usuario)
+  prestadores: Prestador[];
+
+  @OneToOne(type => UsuarioTIUN, usuarioTIUN => usuarioTIUN.usuario)
+  usuariosTIUN: UsuarioTIUN[];
 
   constructor(email: string, password: string, rol: Rol) {
     this.email = email;

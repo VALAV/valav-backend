@@ -11,7 +11,9 @@ import {JwtModule} from '@nestjs/jwt';
 import * as dotenv from 'dotenv';
 import {TokenMiddleware} from './modules/auth/token.middleware';
 import {UsuariosController} from './modules/usuarios/usuarios.controller';
-import {RolService} from "./modules/rol/rol.service";
+import {RolService} from './modules/rol/rol.service';
+import { TipoPrestador } from './modules/tipo-prestador/entities/tipoPrestador.entity';
+import { SectorPrestadorModule } from './modules/sector-prestador/sector-prestador.module';
 
 dotenv.config();
 
@@ -23,10 +25,8 @@ const EXP_TIME = process.env.EXP_TIME;
             JwtModule.register({secret: SECRET,
                 signOptions: { expiresIn: EXP_TIME}
             }),
-            UsuariosModule,
-            AuthModule,
-            RolModule,
-            TipoDocumentoModule],
+            UsuariosModule, AuthModule, RolModule, TipoDocumentoModule,
+            TipoPrestador, SectorPrestadorModule],
   controllers: [],
   providers: [UsuarioService, AuthService, RolService],
 })
@@ -35,7 +35,8 @@ export class AppModule implements NestModule {
     consumer
         .apply(TokenMiddleware)
         .exclude(
-            {path: 'usuarios/tiun', method: RequestMethod.POST}
+          {path: 'usuarios/tiun', method: RequestMethod.POST},
+                 {path: 'usuarios/prestador', method: RequestMethod.POST}
         )
         .forRoutes(UsuariosController);
   }
