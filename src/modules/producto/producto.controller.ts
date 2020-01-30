@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProductoDto } from './dto/producto.dto';
 import { ProductoService } from './producto.service';
 
@@ -8,5 +8,14 @@ export class ProductoController {
   @Post()
   agregarNuevoProducto(@Body() producto: ProductoDto) {
     return this.productoService.createProducto(producto);
+  }
+
+  @Get('prestador/:id')
+  findProductosByPrestador(@Param() params) {
+    return this.productoService.findProductosByPrestador(params.id);
+  }
+  @Get(':id')
+  getProductoById(@Param() params) {
+    return this.productoService.getProductoById(params.id);
   }
 }

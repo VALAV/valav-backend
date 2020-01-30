@@ -9,9 +9,13 @@ import { ProductoRepository } from './producto.repository';
 export class ProductoService {
   constructor() {}
 
-  async createProducto(producto: ProductoDto) {
+  private async getPrestadorById(presId: number) {
     const prestadorRepository = getCustomRepository(PrestadorRepository);
-    const prestador = await prestadorRepository.getById(producto.presId);
+    return await prestadorRepository.getById(presId);
+  }
+
+  async createProducto(producto: ProductoDto) {
+    const prestador = await this.getPrestadorById(producto.presId);
     if (prestador == null) {
       console.log('No hay prestador con ese id');
     } else {
@@ -20,6 +24,19 @@ export class ProductoService {
       const productoRepository = getCustomRepository(ProductoRepository);
       return await productoRepository.createProducto(nuevoProducto);
     }
+  }
+
+  async findProductosByPrestador(presId) {
+    const prestador = await this.getPrestadorById(presId);
+    if(prestador !== undefined || prestador !== null) {
+      const productoRepository = getCustomRepository(ProductoRepository);
+      return await productoRepository.findProductosByPrestador(prestador);
+    }
+  }
+
+  async getProductoById(id) {
+    const productoRepository = getCustomRepository(ProductoRepository);
+    return await productoRepository.getProductoById(id);
   }
 
 }
