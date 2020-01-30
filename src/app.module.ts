@@ -14,6 +14,7 @@ import {UsuariosController} from './modules/usuarios/usuarios.controller';
 import {RolService} from './modules/rol/rol.service';
 import { TipoPrestador } from './modules/tipo-prestador/entities/tipoPrestador.entity';
 import { SectorPrestadorModule } from './modules/sector-prestador/sector-prestador.module';
+import { ProductoModule } from './modules/producto/producto.module';
 
 dotenv.config();
 
@@ -26,7 +27,7 @@ const EXP_TIME = process.env.EXP_TIME;
                 signOptions: { expiresIn: EXP_TIME}
             }),
             UsuariosModule, AuthModule, RolModule, TipoDocumentoModule,
-            TipoPrestador, SectorPrestadorModule],
+            TipoPrestador, SectorPrestadorModule, ProductoModule],
   controllers: [],
   providers: [UsuarioService, AuthService, RolService],
 })

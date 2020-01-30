@@ -9,6 +9,7 @@ import { Prestador } from "./entities/prestador.entity";
 import { PrestadorRepository } from "./repositories/prestador.repository";
 import { RolService } from "../rol/rol.service";
 import { PrestadorDto } from './dto/prestador.dto';
+import { Producto } from '../producto/entities/producto.entity';
 
 @Injectable()
 export class UsuarioService {
@@ -17,26 +18,6 @@ export class UsuarioService {
   async findAllUsuarios(): Promise<Usuario[]> {
     const usuarioRepository = getCustomRepository(UsuarioRepository);
     return await usuarioRepository.findAll();
-  }
-
-  async findAllUsuariosTIUN(): Promise<UsuarioTIUN[]> {
-    const usuarioTIUNRepository = getCustomRepository(UsuarioTIUNRepository);
-    return await usuarioTIUNRepository.findAll();
-  }
-
-  async findAllPrestadores(): Promise<Prestador[]> {
-    const prestadorRepository = getCustomRepository(PrestadorRepository);
-    return await prestadorRepository.findAll();
-  }
-
-  async createUsuarioTIUN(usuarioTIUN: UsuarioTIUNDto): Promise<UsuarioTIUN> {
-    const usuarioTIUNRepository = getCustomRepository(UsuarioTIUNRepository);
-    return usuarioTIUNRepository.crearUsuarioTIUN(usuarioTIUN, this.syncGetRolById(usuarioTIUN.rolId));
-  }
-
-  async createPrestador(prestador: PrestadorDto): Promise<Prestador> {
-    const prestadorRepository = getCustomRepository(PrestadorRepository);
-    return prestadorRepository.crearPrestador(prestador, this.syncGetRolById(prestador.rolId));
   }
 
   async findUsuarioByEmail(email): Promise<Usuario[]>{
@@ -51,4 +32,35 @@ export class UsuarioService {
   findById(id: number): string {
     return `Retorno el usuario con id ${id} desde servicio`;
   }
+
+  /**
+   * Usuarios TIUN
+   */
+  async findAllUsuariosTIUN(): Promise<UsuarioTIUN[]> {
+    const usuarioTIUNRepository = getCustomRepository(UsuarioTIUNRepository);
+    return await usuarioTIUNRepository.findAll();
+  }
+
+  async createUsuarioTIUN(usuarioTIUN: UsuarioTIUNDto): Promise<UsuarioTIUN> {
+    const usuarioTIUNRepository = getCustomRepository(UsuarioTIUNRepository);
+    return usuarioTIUNRepository.crearUsuarioTIUN(usuarioTIUN, this.syncGetRolById(usuarioTIUN.rolId));
+  }
+
+  /**
+   * Prestadores
+   */
+  async findAllPrestadores(): Promise<Prestador[]> {
+    const prestadorRepository = getCustomRepository(PrestadorRepository);
+    return await prestadorRepository.findAll();
+  }
+
+  async createPrestador(prestador: PrestadorDto): Promise<Prestador> {
+    const prestadorRepository = getCustomRepository(PrestadorRepository);
+    return prestadorRepository.crearPrestador(prestador, this.syncGetRolById(prestador.rolId));
+  }
+
+  /*async addProductoToPrestador(prestador: Prestador, producto: Producto) {
+    const prestadorRepository = getCustomRepository(PrestadorRepository);
+    return await prestadorRepository.addProductoToPrestador(prestador, producto);
+  }*/
 }

@@ -1,7 +1,8 @@
-import { Entity, Column, OneToOne, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, ManyToOne, PrimaryColumn, OneToMany } from 'typeorm';
 import { Usuario} from './usuario.entity';
 import { TipoPrestador } from '../../tipo-prestador/entities/tipoPrestador.entity';
 import { SectorPrestador } from '../../sector-prestador/entities/sectorPrestador.entity';
+import { Producto } from '../../producto/entities/producto.entity';
 
 const INTENTOS_CAMBIO = 3;
 
@@ -37,6 +38,9 @@ export class Prestador {
   @ManyToOne(type => SectorPrestador, {eager: true})
   @JoinColumn({name: 'sector_id'})
   sectorId: number;
+
+  @OneToMany(type => Producto, producto => producto.prestador)
+  productos: Producto[];
 
   constructor(usuario: number, razonSocial: string, nit: string,
               tipoId: number, sectorId: number, rut: string) {

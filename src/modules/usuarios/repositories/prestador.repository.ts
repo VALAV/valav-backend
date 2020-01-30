@@ -5,6 +5,7 @@ import { hashPassword } from '../../../assets/js/pass.utils';
 import { Usuario } from '../entities/usuario.entity';
 import { PrestadorDto } from '../dto/prestador.dto';
 import { UsuarioRepository } from './usuario.repository';
+import { Producto } from '../../producto/entities/producto.entity';
 
 @EntityRepository(Prestador)
 export class PrestadorRepository extends Repository<Prestador>{
@@ -27,5 +28,15 @@ export class PrestadorRepository extends Repository<Prestador>{
 
     async findAll(): Promise<Prestador[]> {
         return await this.find();
+    }
+
+    async addProductoToPrestador(prestador: Prestador, producto: Producto) {
+        prestador.productos.push(producto);
+    }
+
+    async getById(idPrestador: number): Promise<Prestador> {
+        const prestador = await this.findOne({usuario: idPrestador});
+        console.log(prestador);
+        return prestador;
     }
 }
