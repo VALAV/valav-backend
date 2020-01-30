@@ -3,8 +3,11 @@ import { Usuario} from './usuario.entity';
 import { TipoPrestador } from '../../tipo-prestador/entities/tipoPrestador.entity';
 import { SectorPrestador } from '../../sector-prestador/entities/sectorPrestador.entity';
 import { Producto } from '../../producto/entities/producto.entity';
+import * as dotenv from 'dotenv';
 
-const INTENTOS_CAMBIO = 3;
+dotenv.config();
+
+const INTENTOS_CAMBIO = +process.env.INTENTOS_CAMBIO_PRESTADOR;
 
 @Entity({name: 'prestador'})
 export class Prestador {

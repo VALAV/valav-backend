@@ -30,13 +30,11 @@ export class PrestadorRepository extends Repository<Prestador>{
         return await this.find();
     }
 
-    async addProductoToPrestador(prestador: Prestador, producto: Producto) {
-        prestador.productos.push(producto);
+    async getById(idPrestador: number): Promise<Prestador> {
+        return await this.findOne({usuario: idPrestador});
     }
 
-    async getById(idPrestador: number): Promise<Prestador> {
-        const prestador = await this.findOne({usuario: idPrestador});
-        console.log(prestador);
-        return prestador;
+    async updatePrestador(prestador: Prestador) {
+        return await this.save(prestador);
     }
 }

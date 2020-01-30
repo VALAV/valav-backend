@@ -9,7 +9,12 @@ import { Prestador } from "./entities/prestador.entity";
 import { PrestadorRepository } from "./repositories/prestador.repository";
 import { RolService } from "../rol/rol.service";
 import { PrestadorDto } from './dto/prestador.dto';
-import { Producto } from '../producto/entities/producto.entity';
+import { EquivalenciasDto } from './dto/equivalencias.dto';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const INTENTOS_CAMBIO = +process.env.INTENTOS_CAMBIO_PRESTADOR;
 
 @Injectable()
 export class UsuarioService {
@@ -59,8 +64,15 @@ export class UsuarioService {
     return prestadorRepository.crearPrestador(prestador, this.syncGetRolById(prestador.rolId));
   }
 
-  /*async addProductoToPrestador(prestador: Prestador, producto: Producto) {
+  async setNuevasEquivalencias(idPres: number, equivalencias: EquivalenciasDto) {
     const prestadorRepository = getCustomRepository(PrestadorRepository);
-    return await prestadorRepository.addProductoToPrestador(prestador, producto);
-  }*/
+    const prestador = await prestadorRepository.getById(idPres);
+    if (prestador !== undefined && prestador !== null) {
+      if ( prestador.intentosCambio <= INTENTOS_CAMBIO && prestador.intentosCambio > 0) {
+        let nuevosIntentos = prestador.intentosCambio - 1;
+        prestador.intentosCambio = nuevosIntentos;
+        prestador.
+      }
+    }
+  }
 }

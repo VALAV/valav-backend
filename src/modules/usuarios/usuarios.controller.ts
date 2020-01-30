@@ -4,6 +4,7 @@ import { UsuarioTIUNDto } from './dto/usuarioTIUN.dto';
 import {UsuarioTIUN} from "./entities/usuariotiun.entity";
 import {Usuario} from "./entities/usuario.entity";
 import { PrestadorDto } from './dto/prestador.dto';
+import { EquivalenciasDto } from './dto/equivalencias.dto';
 
 
 @Controller('usuarios')
@@ -38,5 +39,10 @@ export class UsuariosController {
     @Post('prestador')
     createPrestador(@Body() prestador: PrestadorDto) {
         return this.usuarioService.createPrestador(prestador);
+    }
+
+    @Post('prestador/:id/equivalencias')
+    setNuevasEquivalencias(@Param() params, @Body() equivalencias : EquivalenciasDto) {
+        return this.usuarioService.setNuevasEquivalencias(params.id, equivalencias);
     }
 }
