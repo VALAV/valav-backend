@@ -68,11 +68,12 @@ CREATE TABLE IF NOT EXISTS public.usuario_tiun (
 );
 
 CREATE TABLE IF NOT EXISTS public.prestador (
-    pres_id      INTEGER REFERENCES usuario(id) UNIQUE NOT NULL,
+    pres_id         INTEGER REFERENCES usuario(id) UNIQUE NOT NULL,
     razon_social    VARCHAR(50) NOT NULL,
     nit             VARCHAR(50) NOT NULL,
     rut             VARCHAR(50) NOT NULL,
     intentos_cambio INTEGER NOT NULL,
+    valor_punto     REAL NOT NULL,
     pts_entregados  INTEGER NOT NULL,
     pts_redimidos   INTEGER NOT NULL,
     tipo_id         INTEGER REFERENCES tipo_prestador(id),
@@ -101,7 +102,6 @@ CREATE TABLE IF NOT EXISTS public.ubicacion_prestador (
 CREATE TABLE IF NOT EXISTS public.producto (
     id              SERIAL PRIMARY KEY,
     pres_id         INTEGER REFERENCES prestador(pres_id),
-    valor_pts       INTEGER NOT NULL,
     valor_real      REAL NOT NULL,
     nombre          VARCHAR(30) NOT NULL,
     foto            TEXT

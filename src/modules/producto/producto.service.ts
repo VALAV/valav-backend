@@ -19,7 +19,7 @@ export class ProductoService {
     if (prestador == null) {
       console.log('No hay prestador con ese id');
     } else {
-      let nuevoProducto = new Producto(producto.valorPts, producto.valorReal,
+      let nuevoProducto = new Producto(producto.valorReal,
                               producto.nombre, prestador, producto.foto);
       const productoRepository = getCustomRepository(ProductoRepository);
       return await productoRepository.createProducto(nuevoProducto);

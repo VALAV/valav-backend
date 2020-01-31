@@ -6,8 +6,7 @@ import { UsuarioTIUN } from './usuariotiun.entity';
 
 @Entity({name: 'usuario'})
 export class Usuario {
-  @PrimaryGeneratedColumn({name: 'id'})
-  id: number;
+  @PrimaryGeneratedColumn({name: 'id'}) private _id: number;
 
   @IsString()
   @Column({name: 'email'})
@@ -34,5 +33,9 @@ export class Usuario {
     this.password = password;
     this.rol = rol;
     this.habilitado = true;
+  }
+
+  get id(): number {
+    return this._id;
   }
 }

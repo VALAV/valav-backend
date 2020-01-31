@@ -28,6 +28,9 @@ export class Prestador {
   @Column({name: 'intentos_cambio'})
   intentosCambio: number;
 
+  @Column({name: 'valor_punto'})
+  valorPunto: number;
+
   @Column({name: 'pts_entregados'})
   ptsEntregados: number;
 
@@ -46,12 +49,13 @@ export class Prestador {
   productos: Producto[];
 
   constructor(usuario: number, razonSocial: string, nit: string,
-              tipoId: number, sectorId: number, rut: string) {
+              tipoId: number, valorPunto: number, sectorId: number, rut: string) {
     this.usuario = usuario;
     this.razonSocial = razonSocial;
     this.nit = nit;
     this.rut = rut;
     this.intentosCambio = INTENTOS_CAMBIO;
+    this.valorPunto = valorPunto;
     this.ptsEntregados = 0;
     this.ptsRedimidos = 0;
     this.tipoId = tipoId;

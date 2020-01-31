@@ -41,6 +41,11 @@ export class UsuariosController {
         return this.usuarioService.createPrestador(prestador);
     }
 
+    @Get('prestador/:id/equivalencias')
+    getEquivalenciaByPrestador(@Param() params) {
+        return this.usuarioService.getEquivalenciasByPrestador(params.id);
+    }
+
     @Post('prestador/:id/equivalencias')
     setNuevasEquivalencias(@Param() params, @Body() equivalencias : EquivalenciasDto) {
         return this.usuarioService.setNuevasEquivalencias(params.id, equivalencias);

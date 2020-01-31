@@ -64,6 +64,14 @@ export class UsuarioService {
     return prestadorRepository.crearPrestador(prestador, this.syncGetRolById(prestador.rolId));
   }
 
+  async getEquivalenciasByPrestador(presId: number) {
+    const prestadorRepository = getCustomRepository(PrestadorRepository);
+    let prestador = await prestadorRepository.getById(presId);
+    if (prestador !== null && prestador !== undefined) {
+      return {presId: prestador.usuario, valorPorPunto: prestador.valorPunto};
+    }
+  }
+
   async setNuevasEquivalencias(idPres: number, equivalencias: EquivalenciasDto) {
     const prestadorRepository = getCustomRepository(PrestadorRepository);
     const prestador = await prestadorRepository.getById(idPres);
@@ -71,7 +79,8 @@ export class UsuarioService {
       if ( prestador.intentosCambio <= INTENTOS_CAMBIO && prestador.intentosCambio > 0) {
         let nuevosIntentos = prestador.intentosCambio - 1;
         prestador.intentosCambio = nuevosIntentos;
-        prestador.
+        prestador.valorPunto = equivalencias.valorPorPunto;
+        return await prestadorRepository.updatePrestador(prestador);
       }
     }
   }

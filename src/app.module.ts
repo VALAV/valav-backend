@@ -8,13 +8,13 @@ import {RolModule} from './modules/rol/rol.module';
 import {TipoDocumentoModule} from './modules/tipo-documento/tipo-documento.module';
 import {AuthService} from './modules/auth/auth.service';
 import {JwtModule} from '@nestjs/jwt';
-import * as dotenv from 'dotenv';
 import {TokenMiddleware} from './modules/auth/token.middleware';
 import {UsuariosController} from './modules/usuarios/usuarios.controller';
 import {RolService} from './modules/rol/rol.service';
 import { TipoPrestador } from './modules/tipo-prestador/entities/tipoPrestador.entity';
 import { SectorPrestadorModule } from './modules/sector-prestador/sector-prestador.module';
 import { ProductoModule } from './modules/producto/producto.module';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 
