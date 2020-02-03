@@ -25,4 +25,25 @@ export class UbicacionPrestadorService {
             return await ubicacionRepository.createUbicacion(nuevaUbicacion);
         }
     }
+
+    async getUbicacionById(locId: number) {
+        const ubicacionRepository = getCustomRepository(UbicacionPrestadorRepository);
+        return await ubicacionRepository.getUbicacionById(locId);
+    }
+
+    async findUbicacionesByPrestador(presId: number) {
+        let prestador = await this.getPrestadorById(presId);
+        if(prestador == null || prestador == undefined) {
+            // TODO: Idear mejores respuestas para las fallas
+            console.log('No hay prestador con ese id');
+        } else {
+            const ubicacionRepository = getCustomRepository(UbicacionPrestadorRepository);
+            return await ubicacionRepository.findUbicacionesByPrestador(prestador);
+        }
+    }
+
+    async findAllUbicaciones() {
+        const ubicacionRepository = getCustomRepository(UbicacionPrestadorRepository);
+        return await ubicacionRepository.findAllUbicaciones();
+    }
 }

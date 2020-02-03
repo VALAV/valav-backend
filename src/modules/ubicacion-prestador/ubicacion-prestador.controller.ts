@@ -1,4 +1,4 @@
-import {Body, Controller, Param, Post} from "@nestjs/common";
+import {Body, Controller, Get, Param, Post} from "@nestjs/common";
 import {UbicacionPrestadorDto} from "./dto/ubicacionPrestador.dto";
 import {UbicacionPrestadorService} from "./ubicacion-prestador.service";
 
@@ -10,4 +10,21 @@ export class UbicacionPrestadorController {
     createUbicacionPrestador(@Param() params, @Body() ubicacionPrestador: UbicacionPrestadorDto) {
         return this.ubicacionPrestadorService.createUbicacionPrestador(params.id, ubicacionPrestador);
     }
+
+    @Get(':id')
+    getUbicacionById(@Param() params) {
+        return this.ubicacionPrestadorService.getUbicacionById(params.id);
+    }
+
+    @Get('prestador/:id')
+    findUbicacionesByPrestador(@Param() params) {
+        return this.ubicacionPrestadorService.findUbicacionesByPrestador(params.id);
+    }
+
+    @Get()
+    findAllUbicaciones() {
+        return this.ubicacionPrestadorService.findAllUbicaciones();
+    }
+
+
 }
