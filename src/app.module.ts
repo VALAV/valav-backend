@@ -11,11 +11,11 @@ import {JwtModule} from '@nestjs/jwt';
 import {TokenMiddleware} from './modules/auth/token.middleware';
 import {UsuariosController} from './modules/usuarios/usuarios.controller';
 import {RolService} from './modules/rol/rol.service';
-import { TipoPrestador } from './modules/tipo-prestador/entities/tipoPrestador.entity';
 import { SectorPrestadorModule } from './modules/sector-prestador/sector-prestador.module';
 import { ProductoModule } from './modules/producto/producto.module';
-import { UbicacionPrestadorModule } from "./modules/ubicacion-prestador/ubicacion-prestador.module";
+import { UbicacionPrestadorModule } from './modules/ubicacion-prestador/ubicacion-prestador.module';
 import * as dotenv from 'dotenv';
+import {TipoPrestadorModule} from "./modules/tipo-prestador/tipo-prestador.module";
 
 dotenv.config();
 
@@ -28,7 +28,7 @@ const EXP_TIME = process.env.EXP_TIME;
                 signOptions: { expiresIn: EXP_TIME}
             }),
             UsuariosModule, AuthModule, RolModule, TipoDocumentoModule,
-            TipoPrestador, SectorPrestadorModule, ProductoModule, UbicacionPrestadorModule],
+            TipoPrestadorModule, SectorPrestadorModule, ProductoModule, UbicacionPrestadorModule],
   controllers: [],
   providers: [UsuarioService, AuthService, RolService],
 })

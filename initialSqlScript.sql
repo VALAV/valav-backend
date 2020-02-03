@@ -122,7 +122,7 @@ INSERT INTO public.estado_transaccion(nombre) VALUES ('Rechazada');
 INSERT INTO public.tipo_transaccion(nombre) VALUES ('Asignacion');
 INSERT INTO public.tipo_transaccion(nombre) VALUES ('Redimir');
 
-INSERT INTO public.tipo_prestador(nombre) VALUES ('Publica');
-INSERT INTO public.tipo_prestador(nombre) VALUES ('Privada');
+INSERT INTO public.tipo_prestador(nombre) VALUES ('Cafeterías');
+INSERT INTO public.tipo_prestador(nombre) VALUES ('Fotocopiadoras');
 
 INSERT INTO public.sector_prestador(nombre) VALUES ('Alimentos');

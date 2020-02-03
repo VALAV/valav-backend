@@ -13,7 +13,7 @@ const INTENTOS_CAMBIO = +process.env.INTENTOS_CAMBIO_PRESTADOR;
 @Entity({name: 'prestador'})
 export class Prestador {
   @PrimaryColumn({name: 'pres_id'})
-  @OneToOne(type => Usuario, {eager: true})
+  @OneToOne(type => Usuario)
   @JoinColumn({name: 'pres_id'})
   usuario: number;
 
@@ -38,11 +38,11 @@ export class Prestador {
   @Column({name: 'pts_redimidos'})
   ptsRedimidos: number;
 
-  @ManyToOne(type => TipoPrestador, {eager: true})
+  @ManyToOne(type => TipoPrestador)
   @JoinColumn({name: 'tipo_id'})
   tipoId: number;
 
-  @ManyToOne(type => SectorPrestador, {eager: true})
+  @ManyToOne(type => SectorPrestador)
   @JoinColumn({name: 'sector_id'})
   sectorId: number;
 
