@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "2aa2f3a0-3a59-4691-9f15-ea183ef47b10",
+		"name": "valav",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Create UsuarioTIUN",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"juanito@email.com\",\n\t\"password\": \"juanito123\",\n\t\"rolId\": 1,\n\t\"nombres\": \"Juanito Alimaña\",\n\t\"apellidos\": \"Apellido 1 Apellido 2\",\n\t\"documento\": \"987654\",\n\t\"tipoDocumento\": 1,\n\t\"tiun\": \"tiun9876\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/usuarios/tiun",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios",
+								"tiun"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Prestador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"razonSocial\": \"Razon social #1\",\n  \"nit\": \"nit #1\",\n  \"rut\": \"102908837\",\n  \"valorPunto\": 2000,\n  \"tipoId\": 1,\n  \"sectorId\": 1,\n  \"email\": \"prestador@email.com\",\n  \"password\": \"prestador123\",\n  \"rolId\": 2\n}"
+						},
+						"url": {
+							"raw": "{{url}}/usuarios/prestador",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"usuarios",
+								"prestador"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar Equivalencias Prestador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"valorPorPunto\": 2500\n}"
+						},
+						"url": {
+							"raw": "{{url}}usuarios/prestador/2/equivalencias?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDUwMTIwMSwiZXhwIjoxNTgwNTAxNTAxfQ.Xb7F7WCEKBxCScKoDSdsdCd2bIUbrL5lhS6CnUkLMYw",
+							"host": [
+								"{{url}}usuarios"
+							],
+							"path": [
+								"prestador",
+								"2",
+								"equivalencias"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDUwMTIwMSwiZXhwIjoxNTgwNTAxNTAxfQ.Xb7F7WCEKBxCScKoDSdsdCd2bIUbrL5lhS6CnUkLMYw"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Equivalencias By Prestador",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}usuarios/prestador/2/equivalencias?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDUwMjE3NSwiZXhwIjoxNTgwNTAyNDc1fQ.FABnkM196dGL4oONh3BnZ28Lml5xw6njfaWCgmqonLg",
+							"host": [
+								"{{url}}usuarios"
+							],
+							"path": [
+								"prestador",
+								"2",
+								"equivalencias"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDUwMjE3NSwiZXhwIjoxNTgwNTAyNDc1fQ.FABnkM196dGL4oONh3BnZ28Lml5xw6njfaWCgmqonLg"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"prestador@email.com\",\n\t\"password\": \"prestador123\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "Crear Producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"presId\": 2,\n\t\"valorPts\": 10,\n\t\"valorReal\": 5000,\n\t\"nombre\": \"Almuerzo corriente\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/producto?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDUwMTIwMSwiZXhwIjoxNTgwNTAxNTAxfQ.Xb7F7WCEKBxCScKoDSdsdCd2bIUbrL5lhS6CnUkLMYw",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"producto"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDUwMTIwMSwiZXhwIjoxNTgwNTAxNTAxfQ.Xb7F7WCEKBxCScKoDSdsdCd2bIUbrL5lhS6CnUkLMYw"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Productos By Prestador Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/producto/prestador/3?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDM2NTM4MywiZXhwIjoxNTgwMzY1NjgzfQ.aAZDSPoZLOaKZaZnwA785jalYWyXcucgDAQpl8kSerU",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"producto",
+								"prestador",
+								"3"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDM2NTM4MywiZXhwIjoxNTgwMzY1NjgzfQ.aAZDSPoZLOaKZaZnwA785jalYWyXcucgDAQpl8kSerU"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Producto By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/producto/1?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDM2NTg2NSwiZXhwIjoxNTgwMzY2MTY1fQ.ktRKqm9pLW2vNlCbBZ7DieLy9k1zp7wKLf6utS0_2UU",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"producto",
+								"1"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDM2NTg2NSwiZXhwIjoxNTgwMzY2MTY1fQ.ktRKqm9pLW2vNlCbBZ7DieLy9k1zp7wKLf6utS0_2UU"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ubicacion",
+			"item": [
+				{
+					"name": "Create Ubicacion Prestador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"latitud\": 4.635498,\n\t\"longitud\": -74.083292,\n\t\"detalles\": \"La Biblioteca Central\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/ubicacion/prestador/2?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDUwNzQ0MywiZXhwIjoxNTgwNTA3NzQzfQ.-nNjbSBfs3EST34RM5oW2tKk1qLKY6gUh3jtjnu68WA",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ubicacion",
+								"prestador",
+								"2"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDUwNzQ0MywiZXhwIjoxNTgwNTA3NzQzfQ.-nNjbSBfs3EST34RM5oW2tKk1qLKY6gUh3jtjnu68WA"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ubicacion By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ubicacion/1?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDc0MzUwOCwiZXhwIjoxNTgwNzQzODA4fQ.xv3lKtGDIQBi4bqOCu855B_0vWin5pwg4_C98wd4H38",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ubicacion",
+								"1"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDc0MzUwOCwiZXhwIjoxNTgwNzQzODA4fQ.xv3lKtGDIQBi4bqOCu855B_0vWin5pwg4_C98wd4H38"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ubicaciones By Prestador",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ubicacion/prestador/2?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDc0MzUwOCwiZXhwIjoxNTgwNzQzODA4fQ.xv3lKtGDIQBi4bqOCu855B_0vWin5pwg4_C98wd4H38",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ubicacion",
+								"prestador",
+								"2"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDc0MzUwOCwiZXhwIjoxNTgwNzQzODA4fQ.xv3lKtGDIQBi4bqOCu855B_0vWin5pwg4_C98wd4H38"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Todas Las Ubicaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ubicacion?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDc0MzUwOCwiZXhwIjoxNTgwNzQzODA4fQ.xv3lKtGDIQBi4bqOCu855B_0vWin5pwg4_C98wd4H38",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ubicacion"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDc0MzUwOCwiZXhwIjoxNTgwNzQzODA4fQ.xv3lKtGDIQBi4bqOCu855B_0vWin5pwg4_C98wd4H38"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipo Prestador",
+			"item": [
+				{
+					"name": "Find All Tipo Prestadores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tipo-prestador?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDc1NDYwMCwiZXhwIjoxNTgwNzU0OTAwfQ.i3IHGi6uYyJIZ96jhl2mVfusbG9hkC9jzpL76AZ_zXU",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tipo-prestador"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZXN0YWRvckBlbWFpbC5jb20iLCJyb2wiOjIsImlhdCI6MTU4MDc1NDYwMCwiZXhwIjoxNTgwNzU0OTAwfQ.i3IHGi6uYyJIZ96jhl2mVfusbG9hkC9jzpL76AZ_zXU"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "dd48aec1-8453-4e73-ba24-b181492e76c1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "cbb294b3-a466-4f47-a855-20b387be87d6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "674f64f4-f8f8-4a87-bbc3-768ed57dd2f2",
+			"key": "url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
