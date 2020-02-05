@@ -8,4 +8,8 @@ export class PuntosUsuarioRepository extends Repository<PuntosUsuario> {
     async getPuntosByUsuarioYPrestador(usuarioTIUN: UsuarioTIUN, pres: Prestador) {
         return await this.findOne({usuario: usuarioTIUN, prestador: pres});
     }
+
+    async saveOrUpdate(puntos: PuntosUsuario) {
+        return await this.save(puntos);
+    }
 }

@@ -63,6 +63,11 @@ export class UsuarioService {
     return await prestadorRepository.findAll();
   }
 
+  async saveOrUpdatePrestador(prestador: Prestador) {
+    const prestadorRepository = getCustomRepository(PrestadorRepository);
+    return await prestadorRepository.saveOrUpdate(prestador);
+  }
+
   async getPrestadorById(id: number): Promise<Prestador> {
     const prestadorRepository = getCustomRepository(PrestadorRepository);
     return await prestadorRepository.getById(id);

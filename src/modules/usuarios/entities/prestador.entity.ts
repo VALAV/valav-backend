@@ -14,7 +14,6 @@ const INTENTOS_CAMBIO = +process.env.INTENTOS_CAMBIO_PRESTADOR;
 @Entity({name: 'prestador'})
 export class Prestador {
   @PrimaryColumn({name: 'pres_id'})
-  @OneToOne(type => Usuario)
   @JoinColumn({name: 'pres_id'})
   usuario: number;
 
@@ -33,17 +32,15 @@ export class Prestador {
   @Column({name: 'valor_punto'})
   valorPunto: number;
 
-  @Column({name: 'pts_entregados'})
-  ptsEntregados: number;
+  @Column({name: 'pts_entregados'}) private _ptsEntregados: number;
 
-  @Column({name: 'pts_redimidos'})
-  ptsRedimidos: number;
+  @Column({name: 'pts_redimidos'}) private _ptsRedimidos: number;
 
-  @ManyToOne(type => TipoPrestador)
+  @ManyToOne(type => TipoPrestador, {eager: true})
   @JoinColumn({name: 'tipo_id'})
   tipoId: number;
 
-  @ManyToOne(type => SectorPrestador)
+  @ManyToOne(type => SectorPrestador, {eager: true})
   @JoinColumn({name: 'sector_id'})
   sectorId: number;
 
@@ -64,10 +61,27 @@ export class Prestador {
     this.rut = rut;
     this.intentosCambio = INTENTOS_CAMBIO;
     this.valorPunto = valorPunto;
-    this.ptsEntregados = 0;
-    this.ptsRedimidos = 0;
+    this._ptsEntregados = 0;
+    this._ptsRedimidos = 0;
     this.tipoId = tipoId;
     this.sectorId = sectorId;
   }
 
+
+  set ptsEntregados(value: number) {
+    this._ptsEntregados = value;
+  }
+
+  set ptsRedimidos(value: number) {
+    this._ptsRedimidos = value;
+  }
+
+
+  get ptsEntregados(): number {
+    return this._ptsEntregados;
+  }
+
+  get ptsRedimidos(): number {
+    return this._ptsRedimidos;
+  }
 }

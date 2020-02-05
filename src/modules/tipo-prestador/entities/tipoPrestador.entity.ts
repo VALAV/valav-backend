@@ -10,6 +10,6 @@ export class TipoPrestador {
   nombre: string;
 
   @OneToMany(type => Prestador,
-    prestador => prestador.tipoId, {eager: true})
+    prestador => prestador.tipoId)
   prestadores: Prestador[];
 }

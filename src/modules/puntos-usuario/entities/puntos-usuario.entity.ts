@@ -17,11 +17,20 @@ export class PuntosUsuario {
     prestador: Prestador;
 
     @Column({name: 'puntos_usuario'})
-    puntos: number;
+    private _puntos: number;
 
-    constructor(usuario: UsuarioTIUN, prestador: Prestador, puntos: number) {
+    constructor(usuario: UsuarioTIUN, prestador: Prestador, puntos: number = 0) {
         this.usuario = usuario;
         this.prestador = prestador;
-        this.puntos = puntos;
+        this._puntos = puntos;
+    }
+
+
+    set puntos(value: number) {
+        this._puntos = value;
+    }
+
+    get puntos(): number {
+        return this._puntos;
     }
 }

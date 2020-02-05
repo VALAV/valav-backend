@@ -7,6 +7,6 @@ export class TransaccionController {
     constructor(private readonly transaccionService: TransaccionService){}
     @Post('asignar')
     createTransaccionAsignar(@Body() transaccion: TransaccionAsignarDto) {
-        return this.transaccionService.createTransaccion(transaccion);
+        return this.transaccionService.createTransaccionAsignar(transaccion);
     }
 }

@@ -20,14 +20,16 @@ export class Transaccion {
 
     @Column({name: 'fecha'}) private _fecha: Date;
 
-    @OneToMany(type => EstadoTransaccion, estado => estado.transacciones)
-    @JoinColumn({name: 'estado_id'}) private _estado: EstadoTransaccion;
+    @ManyToOne(type => EstadoTransaccion, estado => estado.transacciones)
+    @JoinColumn({name: 'estado_id'})
+    private _estado: EstadoTransaccion;
 
-    @OneToMany(type => TipoTransaccion, tipo => tipo.transacciones)
-    @JoinColumn({name: 'tipo_id'}) private _tipo: TipoTransaccion;
+    @ManyToOne(type => TipoTransaccion, tipo => tipo.transacciones)
+    @JoinColumn({name: 'tipo_id'})
+    private _tipo: TipoTransaccion;
 
     constructor(usuario: UsuarioTIUN, prestador: Prestador, valorPesos: number = 0, valorPts: number = 0, fecha: Date,
-                estado: EstadoTransaccion = null, tipo: TipoTransaccion = null)
+                tipo: TipoTransaccion = null, estado: EstadoTransaccion = null)
     {
         this._usuarioTIUN = usuario;
         this._prestador = prestador;

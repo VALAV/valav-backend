@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS public.prestador (
 
 CREATE TABLE IF NOT EXISTS public.transaccion (
     id              SERIAL PRIMARY KEY,
-    utiun_id        INTEGER REFERENCES usuario_tiun(usuario_id),
+    utiun_id        VARCHAR(15) REFERENCES usuario_tiun(documento) NOT NULL,
     pres_id         INTEGER REFERENCES prestador(pres_id),
     valor_pesos     REAL NOT NULL,
     valor_pts       INTEGER NOT NULL,
