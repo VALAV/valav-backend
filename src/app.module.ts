@@ -14,9 +14,13 @@ import {RolService} from './modules/rol/rol.service';
 import { SectorPrestadorModule } from './modules/sector-prestador/sector-prestador.module';
 import { ProductoModule } from './modules/producto/producto.module';
 import { UbicacionPrestadorModule } from './modules/ubicacion-prestador/ubicacion-prestador.module';
-import * as dotenv from 'dotenv';
 import {TipoPrestadorModule} from "./modules/tipo-prestador/tipo-prestador.module";
+import {TipoTransaccionModule} from "./modules/tipo-transaccion/tipo-transaccion.module";
+import {EstadoTransaccionModule} from "./modules/estado-transaccion/estado-transaccion.module";
+import {TransaccionModule} from "./modules/transaccion/transaccion.module";
+import {PuntosUsuarioModule} from "./modules/puntos-usuario/puntos-usuario.module";
 
+import * as dotenv from 'dotenv';
 dotenv.config();
 
 const SECRET = process.env.JWT_SECRET;
@@ -28,7 +32,9 @@ const EXP_TIME = process.env.EXP_TIME;
                 signOptions: { expiresIn: EXP_TIME}
             }),
             UsuariosModule, AuthModule, RolModule, TipoDocumentoModule,
-            TipoPrestadorModule, SectorPrestadorModule, ProductoModule, UbicacionPrestadorModule],
+            TipoPrestadorModule, SectorPrestadorModule, ProductoModule,
+            UbicacionPrestadorModule, TipoTransaccionModule, EstadoTransaccionModule,
+            TransaccionModule, PuntosUsuarioModule],
   controllers: [],
   providers: [UsuarioService, AuthService, RolService],
 })

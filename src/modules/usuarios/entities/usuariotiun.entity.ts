@@ -1,6 +1,8 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn, ManyToOne} from 'typeorm';
+import {Column, Entity, JoinColumn, OneToOne, PrimaryColumn, ManyToOne, OneToMany} from 'typeorm';
 import { Usuario } from './usuario.entity';
 import { TipoDocumento } from '../../tipo-documento/entities/tipoDocumento.entity';
+import {Transaccion} from "../../transaccion/entities/transaccion.entity";
+import {PuntosUsuario} from "../../puntos-usuario/entities/puntos-usuario.entity";
 
 @Entity({name: 'usuario_tiun'})
 export class UsuarioTIUN {
@@ -23,6 +25,12 @@ export class UsuarioTIUN {
 
   @Column({name: 'tiun'})
   tiun: string;
+
+  @OneToMany(type => Transaccion, transaccion => transaccion.usuarioTIUN)
+  transacciones: Transaccion[];
+
+  @OneToMany(type => PuntosUsuario, puntos => puntos.usuario)
+  puntos: PuntosUsuario[];
 
   constructor(nombres: string, apellidos: string, tipoDocumento: number,
               documento: string, tiun: string, usuario: number) {

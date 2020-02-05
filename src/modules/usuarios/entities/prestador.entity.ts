@@ -5,6 +5,7 @@ import { SectorPrestador } from '../../sector-prestador/entities/sectorPrestador
 import { Producto } from '../../producto/entities/producto.entity';
 import * as dotenv from 'dotenv';
 import {UbicacionPrestador} from "../../ubicacion-prestador/entities/ubicacionPrestador.entity";
+import {Transaccion} from "../../transaccion/entities/transaccion.entity";
 
 dotenv.config();
 
@@ -51,6 +52,9 @@ export class Prestador {
 
   @OneToMany(type => UbicacionPrestador, ubicacion => ubicacion.prestador)
   ubicaciones: UbicacionPrestador[];
+
+  @OneToMany(type => Transaccion, transaccion => transaccion.prestador)
+  transacciones: Transaccion[];
 
   constructor(usuario: number, razonSocial: string, nit: string,
               tipoId: number, valorPunto: number, sectorId: number, rut: string) {

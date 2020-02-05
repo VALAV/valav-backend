@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS public.transaccion;
+DROP TABLE IF EXISTS public.puntos_usuario;
 DROP TABLE IF EXISTS public.ubicacion_prestador;
 DROP TABLE IF EXISTS public.producto;
 DROP TABLE IF EXISTS public.usuario_tiun;
@@ -107,6 +108,13 @@ CREATE TABLE IF NOT EXISTS public.producto (
     foto            TEXT
 );
 
+CREATE TABLE IF NOT EXISTS public.puntos_usuario (
+    id              SERIAL PRIMARY KEY,
+    tiun_documento  VARCHAR(15) REFERENCES usuario_tiun(documento) NOT NULL,
+    pres_id         INTEGER REFERENCES prestador(pres_id) NOT NULL,
+    puntos_usuario  INTEGER NOT NULL,
+    UNIQUE(tiun_documento, pres_id)
+);
 
 -- INSERTS EN TABLAS
 
