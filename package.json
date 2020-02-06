@@ -13,6 +13,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main.js",
     "postinstall": "npm run prestart:prod",
+    "prestart:prod": "rimraf dist && npm run build",
     "heroku-postbuild": "npm install --production",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
