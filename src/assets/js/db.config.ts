@@ -8,7 +8,7 @@ dotenv.config();
 
 const ormConfig = {
   type: 'postgres',
-  host: 'localhost',
+  host: process.env.DATABASE_URL,
   port: process.env.DB_PORT,
   username: 'postgres',
   password: process.env.DB_PASSWORD,
