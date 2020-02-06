@@ -8,9 +8,9 @@ dotenv.config();
 
 const ormConfig = {
   type: 'postgres',
-  host: process.env.DATABASE_URL,
+  host: process.env.DB_URL,
   port: process.env.DB_PORT,
-  username: 'postgres',
+  username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: 'valav',
   entities: ['dist/modules/**/entities/*.js'],
