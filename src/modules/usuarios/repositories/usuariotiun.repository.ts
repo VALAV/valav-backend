@@ -31,4 +31,8 @@ export class UsuarioTIUNRepository extends Repository<UsuarioTIUN> {
     return usuarios;
   }
 
+  async getUsuarioById(usuId: number) {
+    return await this.findOne({usuario: usuId});
+  }
+
 }

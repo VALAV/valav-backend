@@ -51,12 +51,26 @@ export class UsuarioService {
     return usuarioTIUNRepository.crearUsuarioTIUN(usuarioTIUN, this.syncGetRolById(usuarioTIUN.rolId));
   }
 
+  async getUsuarioTIUNById(id: number): Promise<UsuarioTIUN> {
+    const usuarioTIUNRepository = getCustomRepository(UsuarioTIUNRepository);
+    return usuarioTIUNRepository.getUsuarioById(id);
+  }
   /**
    * Prestadores
    */
   async findAllPrestadores(): Promise<Prestador[]> {
     const prestadorRepository = getCustomRepository(PrestadorRepository);
     return await prestadorRepository.findAll();
+  }
+
+  async saveOrUpdatePrestador(prestador: Prestador) {
+    const prestadorRepository = getCustomRepository(PrestadorRepository);
+    return await prestadorRepository.saveOrUpdate(prestador);
+  }
+
+  async getPrestadorById(id: number): Promise<Prestador> {
+    const prestadorRepository = getCustomRepository(PrestadorRepository);
+    return await prestadorRepository.getById(id);
   }
 
   async createPrestador(prestador: PrestadorDto): Promise<Prestador> {

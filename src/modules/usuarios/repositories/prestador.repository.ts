@@ -36,4 +36,8 @@ export class PrestadorRepository extends Repository<Prestador>{
     async updatePrestador(prestador: Prestador) {
         return await this.save(prestador);
     }
+
+    async saveOrUpdate(prestador: Prestador) {
+        return await this.save(prestador);
+    }
 }
