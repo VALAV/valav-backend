@@ -1,0 +1,35 @@
+1. En package.json se agrega en la seccion de los scripts:
+
+    "postinstall": "npm run prestart:prod",
+    "prestart:prod": "rimraf dist && npm run build",
+    "heroku-postbuild": "npm install --production"
+
+2. Se agrega tambien una seccion llamada "engines" con las versiones
+   de npm y node:
+
+    "engines": {
+        "node": "13.5.0",
+        "npm": "6.13.4"
+    }
+
+3. Se configura el ambiente de heroku-cli
+4. Se setean estas variables:
+
+    heroku config:set NPM_CONFIG_PRODUCTION=false
+    heroku config:set NODE_ENV=production
+
+5. Se empuja el codigo a heroku:
+    git push heroku heroku:master
+
+** CREANDO POSTGRES DB
+
+6. Se crea la DB de postgres a traves de heroku-cli:
+
+    heroku addons:create heroku-postgresql:hobby-dev
+
+7. Se ejecuta el script de inicializacion de la DB:
+    
+    cat initialSqlScript.sql | heroku pg:psql
+
+8. Datos como host, nombre, contraseña, puerto_db y puerto aplicacion deben
+   cambiar al momento de desplegar para que usen los de heroku
