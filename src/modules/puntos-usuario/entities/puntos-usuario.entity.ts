@@ -12,7 +12,7 @@ export class PuntosUsuario {
     @JoinColumn({name: 'tiun_documento'})
     usuario: UsuarioTIUN;
 
-    @ManyToOne(type => Prestador)
+    @ManyToOne(type => Prestador, {eager: true})
     @JoinColumn({name: 'pres_id'})
     prestador: Prestador;
 
