@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS public.transaccion (
     pres_id         INTEGER REFERENCES prestador(pres_id),
     valor_pesos     REAL NOT NULL,
     valor_pts       INTEGER NOT NULL,
-    fecha           TIMESTAMP NOT NULL,
+    fecha           TIMESTAMPTZ NOT NULL,
     estado_id       INTEGER REFERENCES estado_transaccion(id),
     tipo_id         INTEGER REFERENCES tipo_transaccion(id)
 );

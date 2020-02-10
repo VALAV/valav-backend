@@ -18,14 +18,16 @@ export class Transaccion {
 
     @Column({name: 'valor_pts'}) private _valorPts: number;
 
-    @Column({name: 'fecha'}) private _fecha: Date;
+    @Column({name: 'fecha', type: 'timestamptz'}) private _fecha: Date;
 
-    @ManyToOne(type => EstadoTransaccion, estado => estado.transacciones)
+    @ManyToOne(type => EstadoTransaccion, estado => estado.transacciones, {eager: true})
     @JoinColumn({name: 'estado_id'})
+    // tslint:disable-next-line:variable-name
     private _estado: EstadoTransaccion;
 
-    @ManyToOne(type => TipoTransaccion, tipo => tipo.transacciones)
+    @ManyToOne(type => TipoTransaccion, tipo => tipo.transacciones, {eager: true})
     @JoinColumn({name: 'tipo_id'})
+    // tslint:disable-next-line:variable-name
     private _tipo: TipoTransaccion;
 
     constructor(usuario: UsuarioTIUN, prestador: Prestador, valorPesos: number = 0, valorPts: number = 0, fecha: Date,
